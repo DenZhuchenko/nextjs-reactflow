@@ -4,113 +4,45 @@ import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import {headerHeight} from '@/layout/Header/Header';
-import Link from 'next/link';
+import {SideBarLink} from '@/layout/SideBar/SideBarComponents/SideBarLink';
 
 export const sideBarWidth = '15vw';
 
-export default function SideBar() {
-    return (
-        <Box sx={{display: 'flex'}}>
-            <CssBaseline/>
-            <Drawer
-                sx={{
-                    minWidth: sideBarWidth,
-                    flexShrink: 0,
-                    '& .MuiDrawer-paper': {
-                        width: sideBarWidth,
-                        boxSizing: 'border-box'
-                    }
-                }}
-                variant="permanent"
-                anchor="left"
-            >
-                <Box
-                    sx={{
-                        minWidth: `calc(100% - ${sideBarWidth}px)`,
-                        minHeight: headerHeight,
-                        ml: `${sideBarWidth}px`
-                    }}
-                >
-                    Some info
-                </Box>
-                <Divider/>
-                <List>
-                    {['Inbox', 'Starred', 'Send email', 'Status'].map((text, index) => (
-                        <ListItem key={text} disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}
-                                </ListItemIcon>
-                                <Link href={`${text.toLowerCase()}`}>
-                                    {/*Fix error on reload*/}
-                                    <ListItemText primary={text}/>
-                                </Link>
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider/>
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem key={text} disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}
-                                </ListItemIcon>
-                                <ListItemText primary={text}/>
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
-                </List>
-            </Drawer>
-        </Box>
-    );
-}
 
-// <Drawer
-//     sx={{
-//         width: drawerWidth,
-//         flexShrink: 0,
-//         '& .MuiDrawer-paper': {
-//             width: drawerWidth,
-//             boxSizing: 'border-box',
-//         },
-//     }}
-//     variant="permanent"
-//     anchor="left"
-// >
-//     <Toolbar />
-//     <Divider />
-//     <List>
-//         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-//             <ListItem key={text} disablePadding>
-//                 <ListItemButton>
-//                     <ListItemIcon>
-//                         {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-//                     </ListItemIcon>
-//                     <ListItemText primary={text} />
-//                 </ListItemButton>
-//             </ListItem>
-//         ))}
-//     </List>
-//     <Divider />
-//     <List>
-//         {['All mail', 'Trash', 'Spam'].map((text, index) => (
-//             <ListItem key={text} disablePadding>
-//                 <ListItemButton>
-//                     <ListItemIcon>
-//                         {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-//                     </ListItemIcon>
-//                     <ListItemText primary={text} />
-//                 </ListItemButton>
-//             </ListItem>
-//         ))}
-//     </List>
-// </Drawer>
+export default function SideBar() {
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <Drawer
+        sx={{
+          minWidth: sideBarWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: sideBarWidth,
+            boxSizing: 'border-box'
+          }
+        }}
+        variant="permanent"
+        anchor="left"
+      >
+        <Box
+          sx={{
+            minWidth: `calc(100% - ${sideBarWidth}px)`,
+            minHeight: headerHeight,
+            ml: `${sideBarWidth}px`
+          }}
+        >
+          Some info
+        </Box>
+        <Divider />
+        <List>
+          <SideBarLink href={`/components/currency`} text={'Currency'} />
+          <SideBarLink href={`/components/user`} text={'User'} />
+          <SideBarLink href={`/components/info`} text={'Info'} />
+        </List>
+        <Divider />
+      </Drawer>
+    </Box>
+  );
+}

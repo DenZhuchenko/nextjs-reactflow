@@ -1,20 +1,13 @@
-import React from 'react';
-import MainLayout from "@/layout/layout";
+import React, { ReactElement } from 'react';
+import MainLayout from '@/layout/layout';
+
 
 const UsersProfile = () => {
-
-  return (
-
-    <div>
-        Some user profile info
-    </div>
-
-  );
+  return <>User Logic</>;
 };
 
-UsersProfile.getLayout = (page) => (
-    <MainLayout>{page}</MainLayout>
-);
-
-
 export default UsersProfile;
+
+UsersProfile.getLayout = function getLayout(page: ReactElement) {
+  return <MainLayout>{page}</MainLayout>;
+};

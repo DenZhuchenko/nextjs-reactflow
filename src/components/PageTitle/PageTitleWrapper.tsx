@@ -35,6 +35,7 @@ const PageTitle: FC<PageTitleProps> = ({
           sx={{ mt: { xs: 2, md: 0 } }}
           variant="contained"
           startIcon={<AddTwoToneIcon fontSize="small" />}
+          href={'/'}
         >
           {heading} Documentation
         </Button>

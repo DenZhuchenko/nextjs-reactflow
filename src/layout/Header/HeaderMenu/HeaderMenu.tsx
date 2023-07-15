@@ -7,24 +7,30 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import {useSession, signOut} from "next-auth/react";
 
 const HeaderMenu = () => {
-
-    const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+    // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+    const settings = ['Logout'];
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-
     const [anchorElUser, setAnchorElUser] = React.useState<HTMLElement | null | undefined>(null);
+
+    const session = useSession()
+    // const userName = session.data?.user?.name
+    // const userEmail = session.data?.user?.email
+    const userImg: any = session.data?.user?.image
+
 
     return (
         <Box sx={{ flexGrow: 0 }}>
     <Tooltip title="Open settings">
     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-    <Avatar alt="Remy Sharp"/>
+    <Avatar src={userImg} alt="Remy Sharp"/>
         </IconButton>
         </Tooltip>
         <Menu
@@ -45,7 +51,7 @@ const HeaderMenu = () => {
         >
         {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{setting}</Typography>
+            <Typography onClick={() => signOut({callbackUrl: '/'})} textAlign="center">{setting}</Typography>
                 </MenuItem>
 ))}
     </Menu>
